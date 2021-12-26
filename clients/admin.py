@@ -1,18 +1,29 @@
 from django.contrib import admin
-from .models import Client, MobileNumber, Email
+from .models import Client, Phone, Email
 
 # Register your models here.
 
-admin.site.register(Client)
-admin.site.register(MobileNumber)
-admin.site.register(Email)
 
 
-class MobileNumberInLine(admin.TabularInline):
-    model = MobileNumber
+class PhoneInLine(admin.TabularInline):
+    model = Phone
     extra = 0
 
 
+class EmailInline(admin.TabularInline):
+  model = Email
+  extra = 0
+
+
 class ClientAdmin(admin.ModelAdmin):
-    model = Client
-    inlines = [MobileNumberInLine]
+    list_display = ('name_company', 
+                    'full_name_user', 
+                    'created', 
+                    'updated', 
+                    'address', 
+                    'company_description')
+    inlines = [PhoneInLine, EmailInline]
+
+admin.site.register(Client, ClientAdmin)
+admin.site.register(Phone)
+admin.site.register(Email)

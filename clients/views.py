@@ -6,9 +6,12 @@ from .models import Client
 
 class Home(ListView):
     model = Client
-    template_name = 'home.html'
+    template_name = 'clients/home.html'
     context_object_name = 'client_info'
     extra_context = {'title': 'Home page'}
+
+    def get_ordering(self):
+      return self.request.GET.get('orderby')
 
 
 def about(request):

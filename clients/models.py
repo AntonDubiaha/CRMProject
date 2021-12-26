@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -12,10 +13,14 @@ class Client(models.Model):
     address = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.full_name_user
+        return self.name_company
+    
+
+#    class Meta:
+#    ordering = ['name_company', 'created']
 
 
-class MobileNumber(models.Model):
+class Phone(models.Model):
     number = models.CharField(max_length=20, help_text='Enter phone number.')
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
 
