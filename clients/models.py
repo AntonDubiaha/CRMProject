@@ -19,7 +19,7 @@ class Client(models.Model):
         return self.name_company
 
     def get_absolute_url(self):
-    return reverse('client_about', kwargs={'client_id': self.pk}) 
+        return reverse('client_about', kwargs={'client_id': self.pk}) 
     
 
 

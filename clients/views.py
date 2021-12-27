@@ -20,9 +20,12 @@ class ClientAbout(DetailView):
     model = Client
     template_name = 'clients/client_about.html'
     pk_url_kwarg = 'client_id'
-    context_object_name = 'client_detail'
+    context_object_name = 'client_about'
 
 
 class ClientEdit(CreateView):
     form_class = ClientEditForm
     template_name = 'clients/client_edit.html'
+
+    def get_absolute_url(self):
+        return reverse('client_edit', kwargs={'form_class': self.pk})
