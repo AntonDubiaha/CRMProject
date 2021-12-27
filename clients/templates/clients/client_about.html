@@ -1,0 +1,11 @@
+{% extends 'clients/base.html' %}
+{% block content %}
+  <h1>Company name: &nbsp;<em>{{client_detail.company_name}}</em></h1>
+  <h2>Full name: <em>{{client_detail.full_name_director}}</em></h2>
+  <h2>Description: &nbsp;<em>{{client_detail.short_description}}</em></h2>
+  <h2>Date of created: &nbsp;<em>{{client_detail.date_create}}</em></h2>
+  <h2>Date of update: &nbsp;<em>{{client_detail.date_change}}</em></h2>
+  <h2>Address: &nbsp;<em>{{client_detail.address}}</em></h2>
+  <br>
+  <a href="#">Edit</a>
+{% endblock %}

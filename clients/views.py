@@ -1,11 +1,13 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic.edit import CreateView
+from django.views.generic import ListView,DetailView
 from .models import Client
+from clients.forms import ClientEditForm
 # Create your views here.
 
 
 class Home(ListView):
     model = Client
+    paginate_by = 3
     template_name = 'clients/home.html'
     context_object_name = 'client_info'
     extra_context = {'title': 'Home page'}
@@ -14,5 +16,13 @@ class Home(ListView):
       return self.request.GET.get('orderby')
 
 
-def about(request):
-    return render(request, 'about.html')
+class ClientAbout(DetailView):
+    model = Client
+    template_name = 'clients/client_about.html'
+    pk_url_kwarg = 'client_id'
+    context_object_name = 'client_detail'
+
+
+class ClientEdit(CreateView):
+    form_class = ClientEditForm
+    template_name = 'clients/client_edit.html'

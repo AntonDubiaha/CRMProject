@@ -1,23 +1,27 @@
 from django.db import models
 from django.urls import reverse
+from tinymce import models as tinymce_models
+from django.urls import reverse
 
 # Create your models here.
 
 
 class Client(models.Model):
+    '''создал модель клиента и описал её параметры'''
     name_company = models.CharField(max_length=200)
     full_name_user = models.CharField(max_length=100)
-    company_description = models.TextField()
+    company_description = tinymce_models.HTMLField('Description')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     address = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name_company
+
+    def get_absolute_url(self):
+    return reverse('client_about', kwargs={'client_id': self.pk}) 
     
 
-#    class Meta:
-#    ordering = ['name_company', 'created']
 
 
 class Phone(models.Model):
