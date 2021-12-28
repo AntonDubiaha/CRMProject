@@ -25,6 +25,7 @@ class Client(models.Model):
 
 
 class Phone(models.Model):
+    '''создал модель телефонов и описал её параметры'''
     number = models.CharField(max_length=20, help_text='Enter phone number.')
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
 
@@ -33,6 +34,7 @@ class Phone(models.Model):
 
 
 class Email(models.Model):
+    '''создал модель почт и описал её параметры'''
     email = models.EmailField(help_text='Enter e-mail address.')
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
 
