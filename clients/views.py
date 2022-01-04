@@ -13,7 +13,7 @@ class Home(ListView):
     extra_context = {'title': 'Home page'}
 
     def get_ordering(self):
-      return self.request.GET.get('orderby')
+        return self.request.GET.get('orderby')
 
 
 class ClientAbout(DetailView):

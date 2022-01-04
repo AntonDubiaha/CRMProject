@@ -4,15 +4,14 @@ from .models import Client, Phone, Email
 # Register your models here.
 
 
-
 class PhoneInLine(admin.TabularInline):
     model = Phone
     extra = 0
 
 
 class EmailInline(admin.TabularInline):
-  model = Email
-  extra = 0
+    model = Email
+    extra = 0
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -23,6 +22,7 @@ class ClientAdmin(admin.ModelAdmin):
                     'address', 
                     'company_description')
     inlines = [PhoneInLine, EmailInline]
+
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Phone)

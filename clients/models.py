@@ -22,8 +22,6 @@ class Client(models.Model):
         return reverse('client_about', kwargs={'client_id': self.pk}) 
     
 
-
-
 class Phone(models.Model):
     '''создал модель телефонов и описал её параметры'''
     number = models.CharField(max_length=20, help_text='Enter phone number.')
