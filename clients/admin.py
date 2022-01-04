@@ -17,10 +17,8 @@ class EmailInline(admin.TabularInline):
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('name_company', 
                     'full_name_user', 
-                    'created', 
-                    'updated', 
-                    'address', 
-                    'company_description')
+                    'created',
+                    )
     inlines = [PhoneInLine, EmailInline]
 
 

@@ -1,5 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView, DetailView
 from .models import Client
 from clients.forms import ClientEditForm
 # Create your views here.
@@ -25,7 +25,7 @@ class ClientAbout(DetailView):
 
 class ClientEdit(UpdateView):
     model = Client
-    fields = ['name_company', 'full_name_user']
+    fields = ['name_company', 'full_name_user', 'company_description', 'address']
     template_name = 'clients/client_edit.html'
     pk_url_kwarg = 'client_id'
     
