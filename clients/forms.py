@@ -18,6 +18,6 @@ class ClientEditForm(forms.ModelForm):
     widgets = {
         'name_company': forms.TextInput(attrs={'class': 'form-control'}),
         'full_name_user': forms.TextInput(attrs={'class': 'form-control'}),
-        'company_description': forms.TextInput(attrs={'class': 'Description'}),
+        'company_description': forms.TextInput(attrs={'class': 'form-control'}),
         'address': forms.TextInput(attrs={'class': 'form-control'}),
     }
