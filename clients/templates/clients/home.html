@@ -6,10 +6,10 @@
     <div>
       <h3>Sortered by:</h3>
       <ul>
-        <li><input type="submit" name="orderby" value="name_company"></li>
-        <li><input type="submit" name="orderby" value="-name_company"></li>
-        <li><input type="submit" name="orderby" value="created"></li>
-        <li><input type="submit" name="orderby" value="-updated"></li>
+        <li><button type="submit" name="orderby" value="name_company">Name company</button></li>
+        <li><button type="submit" name="orderby" value="-name_company">Name company reversed</button></li>
+        <li><button type="submit" name="orderby" value="created">Created</button></li>
+        <li><button type="submit" name="orderby" value="-updated">Updated reversed</button></li>
       </ul>
     </div>
   </form>
@@ -22,5 +22,8 @@
       <hr>
     </li>
   {% endfor %}
+  <div class="grid-img-right mt-4 text-right bg bg1">
+    {% include 'clients/pagination.html' %}
+  </div>
 </ul>
 {% endblock %}
