@@ -8,9 +8,9 @@
   <h3>Address: &nbsp;<em>{{client_about.address}}</em></h3>
   <h3>Phones: &nbsp;</h3>
   <ol>
-    {% for number in client_about.phone_set.all %}
-    <li><h4><em>{{number}}</em></h4></li>
-    {% endfor %}
+      {% for number in client_about.phone_set.all %}
+        <li><h4><em>{{number}}</em></h4></li>
+      {% endfor %}
   </ol>
   <h3>Email: &nbsp;</h3>
   <ol>

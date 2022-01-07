@@ -25,7 +25,7 @@ class Client(models.Model):
 class Phone(models.Model):
     '''создал модель телефонов и описал её параметры'''
     number = models.CharField(max_length=20, help_text='Enter phone number.')
-    client = models.ForeignKey('Client', on_delete=models.CASCADE)
+    client = models.ForeignKey('Client', related_name="client_phones", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.number

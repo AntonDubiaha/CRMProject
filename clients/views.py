@@ -1,6 +1,9 @@
+from .forms import ClientForm, ClientFormSet
+from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from .models import Client
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -24,7 +27,18 @@ class ClientAbout(DetailView):
 
 class ClientEdit(UpdateView):
     model = Client
-    fields = ['name_company', 'full_name_user', 'company_description', 'address']
     template_name = 'clients/client_edit.html'
+    form_class = ClientForm
     pk_url_kwarg = 'client_id'
-    
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        data = super(ClientEdit, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['number'] = ClientFormSet(self.request.POST, instance=self.object)
+        else:
+            data['number'] = ClientFormSet(instance=self.object)
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('clients:client_about', kwargs={'pk': self.object.pk})
