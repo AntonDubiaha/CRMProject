@@ -8,14 +8,8 @@
 <form method="post" class="uniform">
     {% csrf_token %}
     {{ form | crispy }}
-    <div class="form-row">
-        <div class="form-group col-md-6 mb-0">
-            {{ phone_formset | crispy }}
-        </div>
-        <div class="form-group col-md-6 mb-0">
-            {{ email_formset | crispy }}
-        </div>
-    </div>
+    {{ phone_formset | crispy }}
+    {{ email_formset | crispy }}
     <br>
     <input type="submit" value="Create"/>
 </form>
