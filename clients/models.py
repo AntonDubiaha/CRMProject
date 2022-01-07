@@ -16,7 +16,7 @@ class Client(models.Model):
     address = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name_company
+        return str(self.name_company)
 
     def get_absolute_url(self):
         return reverse('client_about', kwargs={'client_id': self.pk}) 
@@ -25,7 +25,7 @@ class Client(models.Model):
 class Phone(models.Model):
     '''создал модель телефонов и описал её параметры'''
     number = models.CharField(max_length=20, help_text='Enter phone number.')
-    client = models.ForeignKey('Client', related_name="client_phones", on_delete=models.CASCADE)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.number
