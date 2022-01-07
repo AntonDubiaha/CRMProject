@@ -1,11 +1,23 @@
 {% extends 'clients/base.html' %}
 {% block content %}
   <h1>Company name: &nbsp;<em>{{client_about.name_company}}</em></h1>
-  <h2>Full name: <em>{{client_about.full_name_user}}</em></h2>
-  <h2>Description: &nbsp;<em>{{client_about.company_description}}</em></h2>
-  <h2>Date of created: &nbsp;<em>{{client_about.created}}</em></h2>
-  <h2>Date of update: &nbsp;<em>{{client_about.updated}}</em></h2>
-  <h2>Address: &nbsp;<em>{{client_about.address}}</em></h2>
+  <h3>Full name: <em>{{client_about.full_name_user}}</em></h3>
+  <h3>Description: &nbsp;<em>{{client_about.company_description}}</em></h3>
+  <h3>Date of created: &nbsp;<em>{{client_about.created}}</em></h3>
+  <h3>Date of update: &nbsp;<em>{{client_about.updated}}</em></h3>
+  <h3>Address: &nbsp;<em>{{client_about.address}}</em></h3>
+  <h3>Phones: &nbsp;</h3>
+  <ol>
+    {% for number in client_about.phone_set.all %}
+    <li><h4><em>{{number}}</em></h4></li>
+    {% endfor %}
+  </ol>
+  <h3>Email: &nbsp;</h3>
+  <ol>
+    {% for email in client_about.email_set.all %}
+    <li><h4><em>{{email}}</em></h4></li>
+    {% endfor %}
+  </ol>
   <br>
   <a href="{% url 'client_edit' client_about.pk %}">Edit</a>
 {% endblock %}

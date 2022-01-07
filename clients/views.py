@@ -1,7 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from .models import Client
-from clients.forms import ClientEditForm
 # Create your views here.
 
 
