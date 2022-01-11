@@ -3,9 +3,19 @@
      Detail
 {% endblock %}
 {% block content %}
+  <style>
+   a {
+    text-decoration: none;
+   }
+   a:hover {
+    text-decoration: underline;
+   }
+   .div1 {display:inline-block;}
+  </style>
   <h1>Company name: &nbsp;<em>{{client_about.name_company}}</em></h1>
+  <div class="container">
   <h3>Full name: <em>{{client_about.full_name_user}}</em></h3>
-  <h3>Description: &nbsp;<em>{{client_about.company_description}}</em></h3>
+  <h3>Description: &nbsp;<em>{% autoescape off %}{{client_about.company_description}}{% endautoescape %}</em></h3>
   <h3>Date of created: &nbsp;<em>{{client_about.created}}</em></h3>
   <h3>Date of update: &nbsp;<em>{{client_about.updated}}</em></h3>
   <h3>Address: &nbsp;<em>{{client_about.address}}</em></h3>
@@ -21,6 +31,17 @@
     <li><h4><em>{{email}}</em></h4></li>
     {% endfor %}
   </ol>
+    </div>
   <br>
+  <div class="mx-auto" style="width: 250px;">
+  <div class="div1 mx-1">
   <a href="{% url 'client_edit' client_about.pk %}">Edit</a>
+  </div>
+  <div class="div1 mx-1">
+    <a href="" class="">Client projects</a>
+  </div>
+  <div class="div1 mx-1">
+    <a href="" class="">Delete client</a>
+  </div>
+    </div>
 {% endblock %}

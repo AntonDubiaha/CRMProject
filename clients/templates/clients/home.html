@@ -3,6 +3,14 @@
      Home
 {% endblock %}
 {% block content %}
+  <style>
+   a {
+    text-decoration: none;
+   }
+   a:hover {
+    text-decoration: underline;
+   }
+  </style>
 <h1>{{title}}</h1>
   <form action="{% url 'home' %}" method="get">
     <div>
@@ -15,15 +23,19 @@
       </ul>
     </div>
   </form>
-<ul>
+<div class="container">
+  <ul>
   {% for field in client_info %}
     <li>
-      <h2><a href="{{ field.get_absolute_url }}">{{field.name_company}}</a> 
-      &nbsp; &nbsp; &nbsp; {{field.created}}</h2>
+      <h3><a href="{{ field.get_absolute_url }}">{{field.name_company}}</a>
+      &nbsp; &nbsp; &nbsp; {{field.created}}</h3>
     </li>
   {% endfor %}
+    </ul>
   <div>
     {% include 'clients/pagination.html' %}
   </div>
-</ul>
+</div>
+
+
 {% endblock %}
