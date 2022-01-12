@@ -1,8 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import PhoneFormset, EmailFormset
+from .forms import PhoneFormset, EmailFormset, CreateEmailFormset, CreatePhoneFormset
 from django.views.generic import ListView, DetailView
-from .models import Client, Phone, Email
-from django.urls.base import reverse_lazy
+from .models import Client
 
 
 class Home(ListView):
@@ -23,41 +22,6 @@ class ClientAbout(DetailView):
     context_object_name = 'client_about'
 
 
-class ClientEdit(UpdateView):
-    model = Client
-    fields = '__all__'
-    template_name = 'clients/client_edit.html'
-    pk_url_kwarg = 'client_id'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Edit company'
-        if self.request.POST:
-            context['phone_formset'] = PhoneFormset(self.request.POST, instance=self.object)
-            context['phone_formset'].full_clean()
-
-            context['email_formset'] = EmailFormset(self.request.POST, instance=self.object)
-            context['email_formset'].full_clean()
-        else:
-            context['phone_formset'] = PhoneFormset(instance=self.object)
-            context['email_formset'] = EmailFormset(instance=self.object)
-        return context
-
-    def form_valid(self, form):
-        context = self.get_context_data(form=form)
-        phone_formset = context['phone_formset']
-        email_formset = context['email_formset']
-        if phone_formset.is_valid() and email_formset.is_valid():
-            response = super().form_valid(form)
-            phone_formset.instance = self.object
-            phone_formset.save()
-            email_formset.instance = self.object
-            email_formset.save()
-            return response
-        else:
-            return super().form_invalid(form)
-
-
 class ClientCreate(CreateView):
     model = Client
     fields = '__all__'
@@ -65,16 +29,16 @@ class ClientCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Create company'
+        context['title'] = 'Create client'
         if self.request.POST:
-            context['phone_formset'] = PhoneFormset(self.request.POST, instance=self.object)
+            context['phone_formset'] = CreatePhoneFormset(self.request.POST, instance=self.object)
             context['phone_formset'].full_clean()
 
-            context['email_formset'] = EmailFormset(self.request.POST, instance=self.object)
+            context['email_formset'] = CreateEmailFormset(self.request.POST, instance=self.object)
             context['email_formset'].full_clean()
         else:
-            context['phone_formset'] = PhoneFormset(instance=self.object)
-            context['email_formset'] = EmailFormset(instance=self.object)
+            context['phone_formset'] = CreatePhoneFormset(instance=self.object)
+            context['email_formset'] = CreateEmailFormset(instance=self.object)
         return context
 
     def form_valid(self, form):
@@ -99,15 +63,36 @@ class ClientDelete(DeleteView):
     pk_url_kwarg = 'client_id'
 
 
-class PhoneUpdate(UpdateView):
-    model = Phone
-    fields = ['number']
-    template_name = 'clients/client_edit.html'
+class ClientUpdate(UpdateView):
+    model = Client
+    fields = '__all__'
+    template_name = 'clients/client_update.html'
     pk_url_kwarg = 'client_id'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Edit client'
+        if self.request.POST:
+            context['phone_formset'] = PhoneFormset(self.request.POST, instance=self.object)
+            context['phone_formset'].full_clean()
 
-class EmailUpdate(UpdateView):
-    model = Email
-    fields = ['email']
-    template_name = 'clients/client_edit.html'
-    pk_url_kwarg = 'client_id'
+            context['email_formset'] = EmailFormset(self.request.POST, instance=self.object)
+            context['email_formset'].full_clean()
+        else:
+            context['phone_formset'] = PhoneFormset(instance=self.object)
+            context['email_formset'] = EmailFormset(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data(form=form)
+        phone_formset = context['phone_formset']
+        email_formset = context['email_formset']
+        if phone_formset.is_valid() and email_formset.is_valid():
+            response = super().form_valid(form)
+            phone_formset.instance = self.object
+            phone_formset.save()
+            email_formset.instance = self.object
+            email_formset.save()
+            return response
+        else:
+            return super().form_invalid(form)

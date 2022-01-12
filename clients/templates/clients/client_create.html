@@ -4,13 +4,13 @@
      Edit
 {% endblock %}
 {% block content %}
-{{ form.media }}
-<form method="post" class="uniform">
+    {{ form.media }}
+    <form method="post" class="uniform">
     {% csrf_token %}
     {{ form | crispy }}
     {{ phone_formset | crispy }}
     {{ email_formset | crispy }}
     <br>
     <input type="submit" value="Create"/>
-</form>
+    </form>
 {% endblock %}

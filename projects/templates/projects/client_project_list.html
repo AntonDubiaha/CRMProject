@@ -1,0 +1,12 @@
+{% extends 'client/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<ul>
+  {% for field in client_project_list %}
+    <li>
+      <h4>Project name: <a href="{{ field.get_absolute_url }}">{{field.name}}</a></h4>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

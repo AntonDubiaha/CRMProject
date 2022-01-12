@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 from tinymce import models as tinymce_models
 from django.urls import reverse
 
