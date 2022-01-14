@@ -4,9 +4,12 @@
 {{ form.media }}
 <form method="post" class="">
   {% csrf_token %}
+  <div class="container">
   {{ form | crispy }}
   {{ phone_formset | crispy }}
   {{ email_formset | crispy }}
+    <br>
   <input type="submit" value="Update">
+    </div>
 </form>
 {% endblock %}
