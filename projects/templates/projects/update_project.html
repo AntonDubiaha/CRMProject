@@ -4,7 +4,10 @@
 {{ form.media }}
 <form method="post" class="uniform">
   {% csrf_token %}
+  <div class="container">
   {{ form | crispy }}
   <input type="submit" value="Update">
+    <br>
+    </div>
 </form>
 {% endblock %}

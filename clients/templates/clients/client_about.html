@@ -38,10 +38,10 @@
   <a href="{% url 'client_update' client_about.pk %}">Edit</a>
   </div>
   <div class="div1 mx-1">
-    <a href="" class="">Client projects</a>
+    <a href="{% url 'client_project_list' client_about.pk %}" class="">Client projects</a>
   </div>
   <div class="div1 mx-1">
-    <a href="" class="">Delete client</a>
+    <a href="{% url 'client_delete' client_about.pk %}" class="">Delete client</a>
   </div>
     </div>
 {% endblock %}

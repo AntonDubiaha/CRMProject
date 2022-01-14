@@ -2,6 +2,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import PhoneFormset, EmailFormset, CreateEmailFormset, CreatePhoneFormset
 from django.views.generic import ListView, DetailView
 from .models import Client
+from django.urls.base import reverse_lazy
 
 
 class Home(ListView):
@@ -26,6 +27,7 @@ class ClientCreate(CreateView):
     model = Client
     fields = '__all__'
     template_name = 'clients/client_create.html'
+    success_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,8 +61,9 @@ class ClientCreate(CreateView):
 class ClientDelete(DeleteView):
     model = Client
     fields = ['name_company', 'full_name_user', 'company_description', 'address']
-    template_name = 'clients/client_edit.html'
+    template_name = 'clients/client_delete.html'
     pk_url_kwarg = 'client_id'
+    success_url = reverse_lazy('home')
 
 
 class ClientUpdate(UpdateView):
@@ -68,6 +71,7 @@ class ClientUpdate(UpdateView):
     fields = '__all__'
     template_name = 'clients/client_update.html'
     pk_url_kwarg = 'client_id'
+    success_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from projects.models import Project
 from clients.models import Client
+from django.urls.base import reverse_lazy
 
 
 class ProjectList(ListView):
@@ -37,6 +38,7 @@ class ProjectCreate(CreateView):
     template_name = 'projects/create_project.html'
     pk_url_kwarg = 'project_id'
     extra_context = {'title': 'Create project'}
+    success_url = reverse_lazy('project_list')
 
 
 class ProjectUpdate(UpdateView):
@@ -45,6 +47,7 @@ class ProjectUpdate(UpdateView):
     template_name = 'projects/update_project.html'
     pk_url_kwarg = 'project_id'
     extra_context = {'title': 'Edit project'}
+    success_url = reverse_lazy('project_list')
 
 
 class ProjectDelete(DeleteView):
@@ -53,3 +56,4 @@ class ProjectDelete(DeleteView):
     template_name = 'projects/delete_project.html'
     pk_url_kwarg = 'project_id'
     extra_context = {'title': 'Delete project'}
+    success_url = reverse_lazy('project_list')

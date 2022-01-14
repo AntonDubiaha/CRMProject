@@ -1,16 +1,14 @@
 {% extends 'clients/base.html' %}
 {% block content %}
-  <h2>Project name: &nbsp;<em>{{project_detail.name}}</em></h2>
-  <div style="border-style: double; margin-right: 30px;">
-    <h4>Description: </h4> {% autoescape off %}{{project_detail.description}}{% endautoescape %}
-  </div>
-  <h4>Start: &nbsp;<em>{{project_detail.date_start}}</em></h4>
-  <h4>End: &nbsp;<em>{{project_detail.date_end}}</em></h4>
-  <h4>Price: &nbsp;<em>{{project_detail.price}}</em></h4>
+  <h2>Project name: &nbsp;<em>{{detail_project.name}}</em></h2>
+  <h4>Description: &nbsp;<em>{% autoescape off %}{{detail_project.description}}{% endautoescape %}</em></h4>
+  <h4>Start: &nbsp;<em>{{detail_project.date_start}}</em></h4>
+  <h4>End: &nbsp;<em>{{detail_project.date_end}}</em></h4>
+  <h4>Price: &nbsp;<em>{{detail_project.price}}</em></h4>
   <div class="mt-4">
-    <a href="{% url 'update_project' project_detail.pk %}" class="text-secondary fs-6">Edit</a>
+    <a href="{% url 'update_project' detail_project.pk %}" class="">Edit</a>
   </div>
   <div class="mt-2">
-    <a href="{% url 'delete_project' project_detail.pk %}" class="text-danger fs-6">Delete</a>
+    <a href="{% url 'delete_project' detail_project.pk %}" class="">Delete</a>
   </div>
 {% endblock %}

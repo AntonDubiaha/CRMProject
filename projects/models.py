@@ -6,7 +6,7 @@ from tinymce import models as tinymce_models
 
 class Project(models.Model):
     name = CharField(max_length=50)
-    description = tinymce_models.HTMLField()
+    description = tinymce_models.HTMLField('Description')
     date_start = DateTimeField()
     date_end = DateTimeField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
