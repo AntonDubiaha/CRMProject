@@ -15,7 +15,7 @@ class ClientProjectList(DetailView):
     model = Client
     template_name = 'projects/client_project_list.html'
     pk_url_kwarg = 'client_id'
-    extra_context = {'title': 'Projects of: '}
+    extra_context = {'title': 'Projects of company:'}
     allow_empty = True
 
     def get_context_data(self, **kwargs):

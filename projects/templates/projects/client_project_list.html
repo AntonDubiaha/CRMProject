@@ -1,9 +1,7 @@
 {% extends 'clients/base.html' %}
 
 {% block content %}
-{% for field in client_project_list %}
-<h1>{{title}}{{field.name}}</h1>
-{% endfor %}
+<h1>{{title}}</h1>
 <ol>
   {% for field in client_project_list %}
     <li>
@@ -11,4 +9,5 @@
     </li>
   {% endfor %}
 </ol>
+<h3><a href="{% url 'create_project' %}">Create project</a></h3>
 {% endblock %}
