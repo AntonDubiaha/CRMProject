@@ -8,4 +8,5 @@ urlpatterns = [
     path('client/', include('clients.urls')),
     path('project/', include('projects.urls')),
     path('tinymce/', include('tinymce.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

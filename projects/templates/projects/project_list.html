@@ -6,7 +6,8 @@
   {% for field in project_list %}
     <li>
       <h5>Project name: <a href="{{ field.get_absolute_url }}">{{field.name}}</a></h5>
-      Start: {{field.date_begin}}
+      Start: {{field.date_start}}
+      <br>
       End: {{field.date_end}}
     </li>
   {% endfor %}
