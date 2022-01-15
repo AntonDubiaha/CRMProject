@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from clients.urls import home_patterns
+from clients.urls import home_patterns, signup_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('project/', include('projects.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('', include(signup_patterns)),
 ]

@@ -3,6 +3,9 @@ from .forms import PhoneFormset, EmailFormset, CreateEmailFormset, CreatePhoneFo
 from django.views.generic import ListView, DetailView
 from .models import Client
 from django.urls.base import reverse_lazy
+from django.contrib.auth.models import Group, User
+from .forms import SignUpForm
+from django.shortcuts import render
 
 
 class Home(ListView):
@@ -100,3 +103,17 @@ class ClientUpdate(UpdateView):
             return response
         else:
             return super().form_invalid(form)
+
+
+def SignUpView(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            signup_user = User.objects.get(username=username)
+            user_group = Group.objects.get(name='User')
+            user_group.user_set.add(signup_user)
+    else:
+        form = SignUpForm()
+    return render(request, 'clients/signup.html', {'form': form})

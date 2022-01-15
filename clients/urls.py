@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from .views import Home, ClientAbout, ClientCreate, ClientUpdate, ClientDelete
 
 urlpatterns = [
@@ -10,4 +11,8 @@ urlpatterns = [
 
 home_patterns = [
     path('', Home.as_view(), name='home'),
+]
+
+signup_patterns = [
+    path('account/create/', views.SignUpView, name='signup'),
 ]
