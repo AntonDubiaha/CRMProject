@@ -33,7 +33,7 @@
   </ol>
     </div>
   <br>
-  <div class="mx-auto" style="width: 250px;">
+  <div class="mx-auto" style="width: 500px;">
   <div class="div1 mx-1">
   <a href="{% url 'client_update' client_about.pk %}">Edit</a>
   </div>
@@ -42,6 +42,9 @@
   </div>
   <div class="div1 mx-1">
     <a href="{% url 'client_delete' client_about.pk %}" class="">Delete client</a>
+  </div>
+    <div class="div1 mx-1">
+    <a href="{% url 'interactions_client' client_about.pk %}" class="">Client interactions</a>
   </div>
     </div>
 {% endblock %}

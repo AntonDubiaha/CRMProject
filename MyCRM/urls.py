@@ -10,4 +10,5 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include(signup_patterns)),
+    path('', include('interactions.urls')),
 ]

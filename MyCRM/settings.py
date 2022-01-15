@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'clients',
     'projects',
+    'interactions',
     'tinymce',
     'crispy_forms',
     'crispy_bootstrap5'

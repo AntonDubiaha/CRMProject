@@ -1,6 +1,7 @@
 {% extends 'clients/base.html' %}
 {% block content %}
   <h2>Project name: &nbsp;<em>{{detail_project.name}}</em></h2>
+  <div class="container">
   <h4>Description: &nbsp;<em>{% autoescape off %}{{detail_project.description}}{% endautoescape %}</em></h4>
   <h4>Start: &nbsp;<em>{{detail_project.date_start}}</em></h4>
   <h4>End: &nbsp;<em>{{detail_project.date_end}}</em></h4>
@@ -11,4 +12,8 @@
   <div class="mt-2">
     <a href="{% url 'delete_project' detail_project.pk %}" class="">Delete</a>
   </div>
+    <div class="mt-2">
+    <a href="{% url 'interactions_project' detail_project.pk %}" class="">Project interactions</a>
+  </div>
+    </div>
 {% endblock %}

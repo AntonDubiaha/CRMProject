@@ -1,0 +1,22 @@
+{% extends 'clients/base.html' %}
+{% block content %}
+  <div class="text-center">
+    <h1>Number of interactions: &nbsp;<em>{{interaction_detail.pk}}</em></h1>
+  </div>
+  <div class="container">
+  <h6>Project: &nbsp;<em>{{interaction_detail.project}}</em></h6>
+  <h6>Client: <em>{{interaction_detail.client}}</em></h6>
+  <h6>Interaction channel: &nbsp;<em>{{interaction_detail.get_message_channel_display}}</em></h6>
+  <h6>Manager: &nbsp;<em>
+    {% for n in interaction_detail.manager.all %}{{n}} &nbsp;{% endfor %}</em></h6>
+  <h6>Description: </h6> {% autoescape off %}{{interaction_detail.description}}{% endautoescape %}
+  <h6>Grade: &nbsp;<em>{{interaction_detail.get_grade_display}}</em></h6>
+    </div>
+
+  <div class="text-center">
+    <a href="{% url 'interaction_update' interaction_detail.pk %}" class="">Edit interation</a>
+  </div>
+  <div class="text-center">
+    <a href="{% url 'interaction_delete' interaction_detail.pk %}" class="">Delete interaction</a>
+  </div>
+{% endblock %}
