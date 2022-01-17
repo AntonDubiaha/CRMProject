@@ -6,9 +6,11 @@ from django.urls.base import reverse_lazy
 from django.contrib.auth.models import Group, User
 from .forms import SignUpForm
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
-class Home(ListView):
+class Home(LoginRequiredMixin, ListView):
     model = Client
     paginate_by = 3
     template_name = 'clients/home.html'
@@ -19,14 +21,14 @@ class Home(ListView):
         return self.request.GET.get('orderby')
 
 
-class ClientAbout(DetailView):
+class ClientAbout(LoginRequiredMixin, DetailView):
     model = Client
     template_name = 'clients/client_about.html'
     pk_url_kwarg = 'client_id'
     context_object_name = 'client_about'
 
 
-class ClientCreate(CreateView):
+class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     fields = '__all__'
     template_name = 'clients/client_create.html'
@@ -61,7 +63,7 @@ class ClientCreate(CreateView):
             return super().form_invalid(form)
 
 
-class ClientDelete(DeleteView):
+class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     fields = ['name_company', 'full_name_user', 'company_description', 'address']
     template_name = 'clients/client_delete.html'
@@ -69,7 +71,7 @@ class ClientDelete(DeleteView):
     success_url = reverse_lazy('home')
 
 
-class ClientUpdate(UpdateView):
+class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = Client
     fields = '__all__'
     template_name = 'clients/client_update.html'

@@ -2,16 +2,18 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from projects.models import Project
 from clients.models import Client
 from django.urls.base import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
-class ProjectList(ListView):
+class ProjectList(LoginRequiredMixin, ListView):
     model = Project
     template_name = 'projects/project_list.html'
     context_object_name = 'project_list'
     extra_context = {'title': 'All projects'}
 
 
-class ClientProjectList(DetailView):
+class ClientProjectList(LoginRequiredMixin, DetailView):
     model = Client
     template_name = 'projects/client_project_list.html'
     pk_url_kwarg = 'client_id'
@@ -24,7 +26,7 @@ class ClientProjectList(DetailView):
         return context
 
 
-class ProjectDetail(DetailView):
+class ProjectDetail(LoginRequiredMixin, DetailView):
     model = Project
     template_name = 'projects/project_detail.html'
     pk_url_kwarg = 'project_id'
@@ -32,7 +34,7 @@ class ProjectDetail(DetailView):
     extra_context = {'title': 'Information of the project'}
 
 
-class ProjectCreate(CreateView):
+class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     fields = '__all__'
     template_name = 'projects/create_project.html'
@@ -41,7 +43,7 @@ class ProjectCreate(CreateView):
     success_url = reverse_lazy('project_list')
 
 
-class ProjectUpdate(UpdateView):
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
     model = Project
     fields = '__all__'
     template_name = 'projects/update_project.html'
@@ -50,7 +52,7 @@ class ProjectUpdate(UpdateView):
     success_url = reverse_lazy('project_list')
 
 
-class ProjectDelete(DeleteView):
+class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     fields = '__all__'
     template_name = 'projects/delete_project.html'
