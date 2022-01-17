@@ -28,11 +28,12 @@ class ClientAbout(LoginRequiredMixin, DetailView):
     context_object_name = 'client_about'
 
 
-class ClientCreate(LoginRequiredMixin, CreateView):
+class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Client
     fields = '__all__'
     template_name = 'clients/client_create.html'
     success_url = reverse_lazy('home')
+    permission_required = 'clients.add_client'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,20 +64,22 @@ class ClientCreate(LoginRequiredMixin, CreateView):
             return super().form_invalid(form)
 
 
-class ClientDelete(LoginRequiredMixin, DeleteView):
+class ClientDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Client
     fields = ['name_company', 'full_name_user', 'company_description', 'address']
     template_name = 'clients/client_delete.html'
     pk_url_kwarg = 'client_id'
     success_url = reverse_lazy('home')
+    permission_required = 'clients.delete_client'
 
 
-class ClientUpdate(LoginRequiredMixin, UpdateView):
+class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Client
     fields = '__all__'
     template_name = 'clients/client_update.html'
     pk_url_kwarg = 'client_id'
     success_url = reverse_lazy('home')
+    permission_required = 'clients.delete_client'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
