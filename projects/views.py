@@ -26,36 +26,40 @@ class ClientProjectList(LoginRequiredMixin, DetailView):
         return context
 
 
-class ProjectDetail(LoginRequiredMixin, DetailView):
+class ProjectDetail(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Project
     template_name = 'projects/project_detail.html'
     pk_url_kwarg = 'project_id'
     context_object_name = 'detail_project'
     extra_context = {'title': 'Information of the project'}
+    permission_required = 'projects.view_project'
 
 
-class ProjectCreate(LoginRequiredMixin, CreateView):
+class ProjectCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Project
     fields = '__all__'
     template_name = 'projects/create_project.html'
     pk_url_kwarg = 'project_id'
     extra_context = {'title': 'Create project'}
     success_url = reverse_lazy('project_list')
+    permission_required = 'projects.add_project'
 
 
-class ProjectUpdate(LoginRequiredMixin, UpdateView):
+class ProjectUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Project
     fields = '__all__'
     template_name = 'projects/update_project.html'
     pk_url_kwarg = 'project_id'
     extra_context = {'title': 'Edit project'}
     success_url = reverse_lazy('project_list')
+    permission_required = 'projects.change_project'
 
 
-class ProjectDelete(LoginRequiredMixin, DeleteView):
+class ProjectDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Project
     fields = '__all__'
     template_name = 'projects/delete_project.html'
     pk_url_kwarg = 'project_id'
     extra_context = {'title': 'Delete project'}
     success_url = reverse_lazy('project_list')
+    permission_required = 'projects.delete_project'
