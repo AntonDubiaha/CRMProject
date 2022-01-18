@@ -25,7 +25,7 @@
         {% endif %}
         <li class="nav-item"><h4 class="text-light font-weight-bold mx-5">User: {{ user.get_username }}</h4></li>
         <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold"
-                                href="#">My account</a></li>
+                                href="{% url 'personal_info' %}">My account</a></li>
         <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold"
                                 href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
        {% else %}
