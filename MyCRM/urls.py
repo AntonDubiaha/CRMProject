@@ -12,5 +12,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include(signup_patterns)),
     path('', include('interactions.urls')),
-    path('myaccount/', personal_info, name='personal_info'),
+    path('myaccount/', personal_info, name='personal_info')
 ]
