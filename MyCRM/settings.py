@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'interactions',
     'tinymce',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'coverage',
 ]
 
 MIDDLEWARE = [
